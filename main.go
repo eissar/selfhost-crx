@@ -35,6 +35,9 @@ type UpdateCheck struct {
 }
 
 func updatesHandler(w http.ResponseWriter, r *http.Request) {
+	// Log incoming request
+	log.Printf("[updates] %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+
 	w.Header().Set("Content-Type", "application/xml")
 	// Write XML declaration
 	if _, err := w.Write([]byte(xml.Header)); err != nil {
@@ -61,6 +64,9 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 
 // distHandler serves the embedded CRX file.
 func distHandler(w http.ResponseWriter, r *http.Request) {
+	// Log incoming request
+	log.Printf("[dist] %s %s from %s", r.Method, r.URL.Path, r.RemoteAddr)
+
 	// Set MIME type for Chrome extensions
 	w.Header().Set("Content-Type", "application/x-chrome-extension")
 	// Length header aids browsers in showing progress
