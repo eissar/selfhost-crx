@@ -52,7 +52,7 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 			ID: EXTENSION_ID,
 			UpdateCheck: UpdateCheck{
 				Codebase: fmt.Sprintf("https://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
-				Version:  "2.0",
+				Version:  "1.0",
 			},
 		},
 	}

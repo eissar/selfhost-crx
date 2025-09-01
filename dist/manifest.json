@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "GAAFL GLA Injector",
     "update_url": "https://hostcrx.victoriouswave-1bc4d533.eastus.azurecontainerapps.io/updates.xml",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Injects a 'gla' object into the window for specific eCW pages.",
     "icons": {
         "48": "icon.png"
