@@ -19,3 +19,8 @@
 *.ignore.*
 *.vim
 
+# certs
+*.pem
+
+# registry scripts
+*.reg

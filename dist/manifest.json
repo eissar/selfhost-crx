@@ -1,31 +1,43 @@
 {
     "manifest_version": 3,
     "name": "GAAFL GLA Injector",
-    "update_url": "http://localhost:8080/updates.xml",
-    "version": "0.0.1",
+    "update_url": "https://hostcrx.victoriouswave-1bc4d533.eastus.azurecontainerapps.io/updates.xml",
+    "version": "0.0.3",
     "description": "Injects a 'gla' object into the window for specific eCW pages.",
     "icons": {
         "48": "icon.png"
     },
-    "permissions": ["storage", "activeTab", "scripting", "tabs"],
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
     "host_permissions": [
         "*://gaaaflapp.ecwcloud.com/mobiledoc/*"
     ],
     "content_scripts": [
         {
-            "matches": ["*://gaaaflapp.ecwcloud.com/mobiledoc/*"],
-            "js": ["gaaflaapp.ecwcloud.com.js"],
+            "matches": [
+                "*://gaaaflapp.ecwcloud.com/mobiledoc/*"
+            ],
+            "js": [
+                "gaaflaapp.ecwcloud.com.js"
+            ],
             "run_at": "document_idle",
             "type": "module",
             "world": "MAIN"
         },
         {
-            "matches": ["*://next.lumahealth.io/*"],
-            "js": ["next.lumahealth.io.js"],
+            "matches": [
+                "*://next.lumahealth.io/*"
+            ],
+            "js": [
+                "next.lumahealth.io.js"
+            ],
             "run_at": "document_idle",
             "type": "module",
             "world": "MAIN"
         }
     ]
 }
-
