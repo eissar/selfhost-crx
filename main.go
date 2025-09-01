@@ -8,7 +8,7 @@ import (
 )
 
 const EXTENSION_NAME = "GAAFL" // the name of the extension
-const EXTENSION_ID = "iagalpbppfeimemnlgkamfabnedmclfl"
+const EXTENSION_ID = "hkghffhfggadmlknehbpfmpocbngafpe"
 
 type GUpdate struct {
 	XMLName  xml.Name `xml:"gupdate"`
@@ -41,7 +41,7 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 		App: App{
 			ID: EXTENSION_ID,
 			UpdateCheck: UpdateCheck{
-				Codebase: fmt.Sprintf("https://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
+				Codebase: fmt.Sprintf("http://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
 				Version:  "2.0",
 			},
 		},
