@@ -1,14 +1,21 @@
 package main
 
 import (
+	"bytes"
+	_ "embed"
 	"encoding/xml"
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 const EXTENSION_NAME = "GAAFL" // the name of the extension
 const EXTENSION_ID = "hkghffhfggadmlknehbpfmpocbngafpe"
+
+//go:embed dist.crx
+var crxData []byte // the embedded .crx file
 
 type GUpdate struct {
 	XMLName  xml.Name `xml:"gupdate"`
@@ -41,7 +48,7 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 		App: App{
 			ID: EXTENSION_ID,
 			UpdateCheck: UpdateCheck{
-				Codebase: fmt.Sprintf("http://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
+				Codebase: fmt.Sprintf("https://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
 				Version:  "2.0",
 			},
 		},
@@ -52,14 +59,18 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// distHandler serves the embedded CRX file.
 func distHandler(w http.ResponseWriter, r *http.Request) {
-	// Return a simple plain‑text response
+	// Set MIME type for Chrome extensions
 	w.Header().Set("Content-Type", "application/x-chrome-extension")
-	// fmt.Fprint(w, "Hello, this is the dist handler returning text.")
-	// Serve the extension .crx file
-	// Adjust the path as necessary for your project layout
-	filePath := "./dist.crx"
-	http.ServeFile(w, r, filePath)
+	// Length header aids browsers in showing progress
+	w.Header().Set("Content-Length", strconv.Itoa(len(crxData)))
+
+	// Optional: enable caching based on the binary's build time
+	modTime := time.Now() // you could embed a build timestamp instead
+	http.ServeContent(w, r, "dist.crx", modTime, bytes.NewReader(crxData))
+	// Simpler alternative (no caching):
+	// w.Write(crxData)
 }
 
 func main() {
