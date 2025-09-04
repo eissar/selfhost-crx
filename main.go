@@ -13,6 +13,7 @@ import (
 
 const EXTENSION_NAME = "GAAFL" // the name of the extension
 const EXTENSION_ID = "hkghffhfggadmlknehbpfmpocbngafpe"
+const VERSION = "1.0.2"
 
 //go:embed dist.crx
 var crxData []byte // the embedded .crx file
@@ -52,7 +53,7 @@ func updatesHandler(w http.ResponseWriter, r *http.Request) {
 			ID: EXTENSION_ID,
 			UpdateCheck: UpdateCheck{
 				Codebase: fmt.Sprintf("https://%s/%s/dist.crx", r.Host, EXTENSION_NAME),
-				Version:  "1.0.2",
+				Version:  VERSION,
 			},
 		},
 	}
