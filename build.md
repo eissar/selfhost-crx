@@ -39,17 +39,11 @@ echo $TOKEN | docker login $LOGIN_SERVER -u 00000000-0000-0000-0000-000000000000
 ?
 
 
-3.
-```bash
-# Tag and push
-docker tag selfhost-crx hostcrx.azurecr.io/selfhost-crx:latest
-docker push hostcrx.azurecr.io/selfhost-crx:latest
-```
 
 4.
 ```bash
 # 1. Re-build (or pull) latest image
-docker build -t selfhost-crx .
+docker build -t selfhost-crx . --build-arg APP_VERSION=v1.0.4 # --no-cache
 
 # 2. Tag & push
 docker tag selfhost-crx hostcrx.azurecr.io/selfhost-crx:latest
