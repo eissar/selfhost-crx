@@ -1,8 +1,10 @@
+ARG APP_VERSION=latest
+
 FROM golang:1.23-alpine AS builder
 RUN apk add --no-cache git ca-certificates
 
 # Install the specific version of the module
-RUN go install github.com/eissar/selfhost-crx@latest
+RUN go install github.com/eissar/selfhost-crx@${APP_VERSION}
 
 # Copy only the compiled binary to the runtime image
 FROM alpine:3.20
