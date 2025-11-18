@@ -38,6 +38,11 @@ echo $TOKEN | docker login $LOGIN_SERVER -u 00000000-0000-0000-0000-000000000000
 ```
 ?
 
+test with
+
+```sh
+docker run selfhost-crx:latest --network host
+```
 
 
 4.
