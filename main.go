@@ -13,7 +13,7 @@ import (
 
 const EXTENSION_NAME = "GAAFL" // the name of the extension
 const EXTENSION_ID = "hkghffhfggadmlknehbpfmpocbngafpe"
-const VERSION = "1.0.6"
+const VERSION = "1.0.7"
 
 //go:embed dist.crx
 var crxData []byte // the embedded .crx file
